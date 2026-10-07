@@ -140,10 +140,40 @@ public class LoginPanel extends JPanel {
         JTextField nameField = new JTextField(15);
         JTextField ktuIdField = new JTextField(15);
         
-        // If they already typed a valid KTU ID, pre-fill it
+        String[] branches = {"CSE", "ECE", "AEI", "EEE", "EL", "CE", "ME", "IE"};
+        JComboBox<String> branchBox = new JComboBox<>(branches);
+        
+        String[] semesters = {"1", "2", "3", "4", "5", "6", "7", "8"};
+        JComboBox<String> semesterBox = new JComboBox<>(semesters);
+        
+        String[] batches = {"2020-2024", "2021-2025", "2022-2026", "2023-2027", "2024-2028", "2025-2029", "2026-2030"};
+        JComboBox<String> batchBox = new JComboBox<>(batches);
+        batchBox.setSelectedItem("2023-2027");
+        
+        JTextField emailField = new JTextField(15);
+        JTextField phoneField = new JTextField(15);
+        
+        // If they already typed a valid KTU ID, pre-fill it and auto-select branch/batch
         String currentKtuId = stuIdField.getText().trim();
         if (currentKtuId.matches("^TVE(22|23|24|25|26)[A-Z]{2}[0-9]{3}$")) {
             ktuIdField.setText(currentKtuId);
+            
+            String yearCode = currentKtuId.substring(3, 5);
+            int startYear = 2000 + Integer.parseInt(yearCode);
+            String batch = startYear + "-" + (startYear + 4);
+            batchBox.setSelectedItem(batch);
+            
+            String branchCode = currentKtuId.substring(5, 7);
+            switch (branchCode) {
+                case "CS": branchBox.setSelectedItem("CSE"); break;
+                case "EC": branchBox.setSelectedItem("ECE"); break;
+                case "AE": branchBox.setSelectedItem("AEI"); break;
+                case "EE": branchBox.setSelectedItem("EEE"); break;
+                case "EL": branchBox.setSelectedItem("EL"); break;
+                case "CE": branchBox.setSelectedItem("CE"); break;
+                case "ME": branchBox.setSelectedItem("ME"); break;
+                case "IE": branchBox.setSelectedItem("IE"); break;
+            }
         }
 
         JPasswordField passField = new JPasswordField(15);
@@ -154,16 +184,32 @@ public class LoginPanel extends JPanel {
         panel.add(nameField);
         panel.add(new JLabel("KTU ID:"));
         panel.add(ktuIdField);
+
+        panel.add(new JLabel("Branch:"));
+        panel.add(branchBox);
+        panel.add(new JLabel("Semester:"));
+        panel.add(semesterBox);
+        panel.add(new JLabel("Batch:"));
+        panel.add(batchBox);
+        panel.add(new JLabel("Email:"));
+        panel.add(emailField);
+        panel.add(new JLabel("Phone:"));
+        panel.add(phoneField);
+
         panel.add(new JLabel("Password:"));
         panel.add(passField);
         panel.add(new JLabel("Confirm Password:"));
         panel.add(confirmPassField);
-        
         int result = JOptionPane.showConfirmDialog(this, panel, "Student Registration", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
         
         if (result == JOptionPane.OK_OPTION) {
             String name = nameField.getText().trim();
             String ktuId = ktuIdField.getText().trim();
+            String branch = branchBox.getSelectedItem() != null ? branchBox.getSelectedItem().toString().trim() : "";
+            String semester = semesterBox.getSelectedItem() != null ? semesterBox.getSelectedItem().toString().trim() : "";
+            String batch = batchBox.getSelectedItem() != null ? batchBox.getSelectedItem().toString().trim() : "";
+            String email = emailField.getText().trim();
+            String phone = phoneField.getText().trim();
             String password = new String(passField.getPassword());
             String confirmPass = new String(confirmPassField.getPassword());
             
@@ -175,13 +221,17 @@ public class LoginPanel extends JPanel {
                 JOptionPane.showMessageDialog(this, "Invalid KTU ID format.", "Registration Error", JOptionPane.ERROR_MESSAGE);
                 return;
             }
+            if (branch.isEmpty() || semester.isEmpty() || batch.isEmpty() || email.isEmpty() || phone.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Please fill in all the details.", "Registration Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
             if (!password.equals(confirmPass)) {
                 JOptionPane.showMessageDialog(this, "Passwords do not match.", "Registration Error", JOptionPane.ERROR_MESSAGE);
                 return;
             }
             
             try {
-                authService.registerStudent(ktuId, name, password);
+                authService.registerStudent(ktuId, name, branch, semester, batch, email, phone, password);
                 JOptionPane.showMessageDialog(this, "Registration successful! You can now log in.", "Success", JOptionPane.INFORMATION_MESSAGE);
                 stuIdField.setText(ktuId);
                 stuPassField.setText("");
