@@ -1,0 +1,29 @@
+\chapter{Introduction}
+
+\section{Domain Background and Context}
+In modern academic institutions, the library is not merely a repository of printed books, but an active academic hub supporting undergraduate and postgraduate research, technical curricula, and faculty scholarship. The operational backbone of any college library is its circulation desk, where catalog records are maintained, physical copies are loaned and returned, late fees are assessed, and student clearances are approved.
+
+For decades, academic libraries operated on traditional ledger-based systems or primitive single-tier computer spreadsheets. While functional for smaller collections, such systems do not scale to contemporary engineering colleges that house tens of thousands of volumes across diverse technical domains and cater to thousands of enrolled students. Effective management requires rigorous inventory control, automated transaction logging, strict enforcement of institutional borrowing rules, and auditable monetary fine calculations.
+
+\section{Limitations of Legacy and Manual Systems}
+Field analysis of conventional library workflows reveals several severe structural deficiencies:
+\begin{enumerate}
+    \item \textbf{Manual Book Ledgers and Human Inaccuracy:} Manual physical registers are prone to transcription errors, illegible handwriting, and misplaced loan records, resulting in untracked book losses.
+    \item \textbf{Opaque Loan Overdue Visibility:} Circulation desks often lack immediate visibility into which physical copies are overdue. Without live computational indicators, librarians must manually cross-reference return dates against daily calendars, leading to significant delays and revenue leakage in overdue fines.
+    \item \textbf{Concurrency and Reservation Conflicts:} When popular textbooks (e.g., core engineering texts) are in high demand, manual reservation tracking fails. Students frequently experience double-booking or arbitrary queue jumping due to the lack of an automated, equitable First-In, First-Out (FIFO) reservation pipeline.
+    \item \textbf{Absence of Student Self-Service:} Conventional systems relegate students to passive consumers who must physically visit the circulation desk to inquire about book availability, loan deadlines, or accumulated dues. This creates unnecessary administrative bottlenecks during exam cycles and semester clearances.
+    \item \textbf{Monolithic and Fragile Codebases:} Existing computer applications in this domain are frequently structured as monolithic scripts with tight coupling between user interfaces and raw SQL queries, violating fundamental software engineering principles and preventing modular maintenance or future expansion.
+\end{enumerate}
+
+\section{Motivation for SmartLib}
+The primary motivation behind developing \textbf{SmartLib} is to bridge the gap between classroom theory in Object-Oriented Programming (OOP) and practical desktop software development. Under the curriculum of \textbf{PBCST304 (Object Oriented Programming)} prescribed by APJ Abdul Kalam Technological University \cite{ktu2023curriculum}, students are tasked with applying core object-oriented paradigms---such as abstraction, encapsulation, inheritance, polymorphism, design patterns, and defensive programming---to design a cohesive software solution.
+
+SmartLib is developed as a modular, multi-tier desktop application built using Java SE 17 \cite{oracle2021javase}, the Swing/AWT GUI toolkit \cite{oracle2021swing}, JDBC \cite{oracle2021jdbc}, and a MySQL relational database \cite{mysql2023manual}. It introduces a decoupled multi-tier architecture that cleanly isolates presentation logic, domain models, business services, and database persistence. By introducing focused features such as live Active Borrowings oversight, dynamic fine calculation, reservation queue tracking, and cryptographic role-based authentication, SmartLib reduces manual paperwork and simplifies common circulation workflows for both librarians and students.
+
+\section{Scope and Significance}
+The operational scope of SmartLib encompasses key aspects of library circulation:
+\begin{itemize}
+    \item \textbf{Administrative Authority (Librarian Operations):} Cataloging of book copies categorized by academic disciplines; student enrollment with automatic batch/branch derivation from KTU registration IDs; direct book issue and return desk; real-time active loan monitoring with overdue highlighting; pending reservation alert notifications; online borrow request approval/rejection; and student account management with safeguards against deleting active borrower records.
+    \item \textbf{Student Self-Service Portal:} Secure student registration and credential login; searchable catalog lookup with real-time availability status; title reservation for currently issued books; online borrow requests; and a personal dashboard providing visibility into issued books, due dates, and fine liabilities.
+    \item \textbf{Educational and Practical Significance:} Beyond its day-to-day utility, SmartLib demonstrates practical application of the Data Access Object (DAO) pattern, custom Swing UI styling, transaction management over JDBC, and structured manual UI testing.
+\end{itemize}

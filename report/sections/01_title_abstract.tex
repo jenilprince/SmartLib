@@ -1,0 +1,84 @@
+% ==============================================================================
+% 1. Title Page and Front Matter
+% ==============================================================================
+
+\begin{titlepage}
+    \centering
+    \vspace*{0.1cm}
+    
+    {\fontsize{20}{26}\selectfont \textbf{SmartLib -- College Library\\Management System}}\\[0.6cm]
+    
+    {\large A Course Project Report}\\[0.35cm]
+    
+    {\small \textit{Submitted to the APJ Abdul Kalam Technological University in\\partial fulfillment of requirements for the award of degree}}\\[0.35cm]
+    
+    {\large \textbf{Bachelor of Technology}}\\[0.15cm]
+    
+    {\normalsize in}\\[0.15cm]
+    
+    {\large \textit{Computer Science and Engineering}}\\[0.45cm]
+    
+    {\normalsize by}\\[0.25cm]
+    
+    \begin{tabular}{c@{\hspace{2.2cm}}c}
+        \textbf{Derin Jose Sanjith} & \textbf{Jenil Prince} \\
+        Register No. TVE25CS048 & Register No. TVE25CS064 \\[0.2cm]
+        \textbf{Prathyush Roy P} & \textbf{Abhinand V P} \\
+        Register No. TVE25CS105 & Register No. LTVE25CS142 \\[0.2cm]
+        \multicolumn{2}{c}{\textbf{Adhithyan K S}} \\
+        \multicolumn{2}{c}{Register No. LTVE25CS143}
+    \end{tabular}\\[0.25cm]
+    
+    {\normalsize Semester: S3}\\[0.5cm]
+    
+    {\normalsize Under the guidance of}\\[0.2cm]
+    {\large \textbf{Prof. Leena V.A}}\\[0.1cm]
+    {\normalsize Department of Computer Science and Engineering}\\[0.3cm]
+    
+    \vfill
+    
+    \includegraphics[width=2.8cm]{Cet_emblem.jpg}\\[0.35cm]
+    
+    {\fontsize{10.5}{13.5}\selectfont \textbf{DEPARTMENT OF COMPUTER SCIENCE AND ENGINEERING}}\\[0.12cm]
+    {\fontsize{10.5}{13.5}\selectfont \textbf{COLLEGE OF ENGINEERING TRIVANDRUM, THIRUVANANTHAPURAM}}\\[0.2cm]
+    {\normalsize October 2026}
+\end{titlepage}
+
+% ==============================================================================
+% 2. Abstract
+% ==============================================================================
+
+\pagenumbering{roman}
+\setcounter{page}{2}
+
+\chapter*{Abstract}
+\addcontentsline{toc}{chapter}{Abstract}
+
+Academic libraries serve as the intellectual cornerstone of collegiate institutions, coordinating the acquisition, cataloging, circulation, and preservation of scholarly assets. Despite widespread digitization across universities, many institutional libraries continue to grapple with antiquated management software or error-prone manual ledgers. Common systemic drawbacks include cumbersome book circulation workflows, unmonitored overdue loans leading to substantial fee leakages, double-booking race conditions during manual reservations, and the complete absence of a secure, transparent self-service portal for enrolled students.
+
+To resolve these challenges, this report presents \textbf{SmartLib}, a robust, desktop-based College Library Management System developed using Java SE 17, Swing/AWT graphical user interfaces, JDBC, and a relational MySQL database. Engineered in accordance with the curricular requirements of course \textbf{PBCST304 (Object Oriented Programming)}, SmartLib strictly adheres to multi-tier layered software architectural patterns, embodying rigorous Separation of Concerns (SoC) and the Dependency Inversion Principle (DIP). The architecture cleanly delineates responsibilities across four distinct layers: a responsive Presentation Layer employing Swing's \texttt{CardLayout} navigation model, a Business Service Layer encapsulating institutional policies, an abstracted Data Access Object (DAO) Layer centered around a generic \texttt{CrudDAO<T, ID>} base interface, and a persistent MySQL relational database.
+
+SmartLib introduces functional operational features that streamline collegiate library administration. A unified authentication mechanism with 12-round BCrypt cryptographic password hashing provides role-based access control for both Librarians and Students. Librarians benefit from an ergonomic Circulation Desk equipped with real-time Active Borrowings Management, which provides a live 10-column inventory of active loans, dynamic clock-aware overdue calculations ($\text{Fine} = \text{Days Overdue} \times \text{\rupee} 10$), multi-criteria instant filtering, and single-click return processing. An automated Title Reservation subsystem mitigates reservation conflicts through a First-In, First-Out (FIFO) queue that alerts staff upon book returns. Concurrently, students are provided with a dedicated self-service portal featuring catalog exploration, borrowing requests, and personal loan transparency. 
+
+The software system was validated through manual functional UI testing conducted across the application's screens, confirming expected behavior across 38 manual test scenarios covering authentication, catalog management, circulation workflows, active borrowing tracking, and reservation queues. The resulting application delivers an intuitive and reliable desktop library management system that demonstrates the practical application of object-oriented paradigms to academic software engineering.
+
+\vspace*{1cm}
+\noindent \textbf{Keywords:} Object-Oriented Programming, Multi-Tier Architecture, Java Swing, JDBC, Data Access Object Pattern, BCrypt Authentication, Active Borrowings Tracking, Manual Functional Testing.
+
+\newpage
+
+% ==============================================================================
+% 3. Table of Contents, 4. List of Figures, 5. List of Tables
+% ==============================================================================
+
+\tableofcontents
+\newpage
+
+\listoffigures
+\newpage
+
+\listoftables
+\newpage
+
+\pagenumbering{arabic}
+\setcounter{page}{1}
